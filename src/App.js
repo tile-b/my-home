@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import AppAppBar from './components/AppBar/AppAppBar';
+import Home from './components/Home';
 
 
 function App() {
@@ -8,8 +9,9 @@ function App() {
     <>
 
     <div className="App">
+    <Home />
+    <AppAppBar />
 
-<AppAppBar />
 
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
@@ -36,6 +38,21 @@ function App() {
       <div style={{paddingTop: '1000px'}}>
 &nbsp;
 </div>
+</div>
+<div style={{ position: 'fixed', bottom: 0, width: '100%', zIndex: 1300 }}>
+  <div
+    style={{
+      height: '10vw',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: 'yellow',
+      fontWeight: 'bold',
+      padding: '15px',
+    }}
+  >
+    Napomena: Sajt je trenutno u izradi i sve prikazano je podložno promjenama!!
+  </div>
 </div>
 
 </>

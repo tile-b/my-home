@@ -15,13 +15,20 @@ import Popper from '@mui/material/Popper';
 import Paper from '@mui/material/Paper';
 import MenuList from '@mui/material/MenuList';
 import ClickAwayListener from '@mui/material/ClickAwayListener';
-import EditIcon from '@mui/icons-material/Edit';
-import ArchiveIcon from '@mui/icons-material/Archive';
-import FileCopyIcon from '@mui/icons-material/FileCopy';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import logo from '../../images/logoMyHome.png';
 import Grow from '@mui/material/Grow';
+import Collapse from '@mui/material/Collapse';
+import List from '@mui/material/List';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import Typography from '@mui/material/Typography';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import { Link } from '@mui/material';
 
 const StyledMenuList = styled(MenuList)(({ theme }) => ({
   padding: '4px 0',
@@ -70,6 +77,7 @@ function AppAppBar() {
   const [openPopper, setOpenPopper] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [hoverTimer, setHoverTimer] = React.useState(null);
+  const [mobileUslugeOpen, setMobileUslugeOpen] = React.useState(false);
 
   // Mouse enter handler for dropdown
   const handleMouseEnter = (event) => {
@@ -102,9 +110,26 @@ function AppAppBar() {
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
+    if (!newOpen) {
+      // Reset mobile submenu state when drawer closes
+      setMobileUslugeOpen(false);
+    }
+  };
+
+  const toggleMobileUsluge = () => {
+    setMobileUslugeOpen(!mobileUslugeOpen);
   };
 
   const navItems = ['Početna', 'O Nama', 'Galerija', 'Kontakt'];
+  
+  // Usluge submenu items
+  const uslugeItems = [
+    { text: 'Zavjese', icon: <MoreHorizIcon /> },
+    { text: 'PVC Stolarija', icon: <MoreHorizIcon /> },
+    { text: 'Tepisi', icon: <MoreHorizIcon /> },
+    { text: 'Zaluzine', icon: <MoreHorizIcon /> },
+    { text: 'Ograde', icon: <MoreHorizIcon /> }
+  ];
 
   return (
     <AppBar
@@ -155,6 +180,7 @@ function AppAppBar() {
               display: { xs: 'none', md: 'flex' },
               gap: 2,
               alignItems: 'center',
+              
             }}
           >
             {/* Regular nav items */}
@@ -164,11 +190,12 @@ function AppAppBar() {
                 variant="text"
                 size="medium"
                 sx={{ 
-                  color: '#c5c6d1', 
+                  color: '#5a5a61', 
                   textTransform: 'none',
                   '&:hover': {
                     color: 'white',backgroundColor: 'transparent'
                   }, 
+                  fontWeight: 'bold',
                 }}
               >
                 {item}
@@ -187,11 +214,12 @@ function AppAppBar() {
                 onMouseLeave={handleMouseLeave}
                 endIcon={<KeyboardArrowDownIcon />}
                 sx={{ 
-                  color: '#c5c6d1', 
+                  color: '#5a5a61', 
                   textTransform: 'none',
                   '&:hover': {
                     backgroundColor: 'transparent', color: 'white',
-                  }, 
+                  },
+                  fontWeight: 'bold', 
                 }}
               >
                 Usluge
@@ -226,21 +254,24 @@ function AppAppBar() {
                       <ClickAwayListener onClickAway={handleClose}>
                         <StyledMenuList autoFocusItem={false}>
                           <MenuItem onClick={handleClose} disableRipple>
-                            <EditIcon />
-                            Uskoro
-                          </MenuItem>
-                          <MenuItem onClick={handleClose} disableRipple>
-                            <FileCopyIcon />
-                            Uskoro
-                          </MenuItem>
-                          <Divider sx={{ my: 0.5 }} />
-                          <MenuItem onClick={handleClose} disableRipple>
-                            <ArchiveIcon />
-                            Uskoro
+                            <MoreHorizIcon />
+                            Zavjese
                           </MenuItem>
                           <MenuItem onClick={handleClose} disableRipple>
                             <MoreHorizIcon />
-                            Uskoro
+                            PVC Stolarija
+                          </MenuItem>
+                          <MenuItem onClick={handleClose} disableRipple>
+                            <MoreHorizIcon />
+                            Tepisi
+                          </MenuItem>
+                          <MenuItem onClick={handleClose} disableRipple>
+                            <MoreHorizIcon />
+                            Zaluzine
+                          </MenuItem>
+                          <MenuItem onClick={handleClose} disableRipple>
+                            <MoreHorizIcon />
+                            Ograde
                           </MenuItem>
                         </StyledMenuList>
                       </ClickAwayListener>
@@ -252,7 +283,7 @@ function AppAppBar() {
           </Box>
 
           {/* Mobile: Menu */}
-          <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+          <Box sx={{ display: { xs: 'flex', md: 'none', } }}>
             <IconButton aria-label="Menu button" onClick={toggleDrawer(true)}>
               <MenuIcon sx={{ color: '#f0f0f0' }} />
             </IconButton>
@@ -266,20 +297,80 @@ function AppAppBar() {
                 },
               }}
             >
-             <Box sx={{ p: 2, backgroundColor: '#b5b5b5' }}> 
+              <Box sx={{ p: 2, backgroundColor: '#b5b5b5', color: '#545559' }}> 
                 <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                   <IconButton onClick={toggleDrawer(false)}>
                     <CloseRoundedIcon />
                   </IconButton>
                 </Box>
 
-                {['Početna', 'O Nama', 'Galerija', 'Kontakt','Usluge'].map(
-                  (item) => (
-                    <MenuItem key={item}>{item}</MenuItem>
-                  )
-                )}
+                {/* Navigation items */}
+                {navItems.map((item) => (
+  <MenuItem key={item} sx={{ fontWeight: 'bold' }}>
+    {item}
+  </MenuItem>
+))}
+
+                
+                {/* Usluge with submenu */}
+                <MenuItem 
+                  onClick={toggleMobileUsluge}
+                  sx={{ 
+                    display: 'flex', 
+                    justifyContent: 'space-between',
+                    backgroundColor: mobileUslugeOpen ? 'rgba(0, 0, 0, 0.04)' : 'transparent'
+                  }}
+                >
+                  <Box sx={{fontWeight: 'bold', color: '#545559'}}>Usluge</Box>
+                  {mobileUslugeOpen ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+                </MenuItem>
+                
+                {/* Collapsible submenu for Usluge */}
+                <Collapse in={mobileUslugeOpen} timeout="auto" unmountOnExit>
+                  <List component="div" disablePadding>
+                    {uslugeItems.map((item, index) => (
+                      <MenuItem 
+                        key={index}
+                        sx={{ 
+                          pl: 4,
+                        }}
+                      >
+                        <ListItemIcon sx={{ minWidth: '36px' }}>
+                          {item.icon}
+                        </ListItemIcon>
+                        <ListItemText primary={item.text} />
+                      </MenuItem>
+                    ))}
+                  </List>
+                </Collapse>
 
                 <Divider sx={{ my: 2 }} />
+
+{/* Social links and icons in same row */}
+
+<Box sx={{ 
+  mt: 1, 
+  px: 2, 
+  display: 'flex', 
+  justifyContent: 'space-between',
+  alignItems: 'center'
+}}>
+  <Typography variant="subtitle2" sx={{ color: 'text.secondary' }}>
+    Pronađite nas
+  </Typography>
+  <Box>
+    <Link href="https://www.instagram.com/myhome_samac/" target="_blank" rel="noopener noreferrer">
+      <IconButton aria-label="Instagram" sx={{ mr: 1 }}>
+        <InstagramIcon sx={{ fontSize: 24 }} />
+      </IconButton>
+    </Link>
+    <Link href="tel:+38763020909" target="_blank" rel="noopener noreferrer">
+      <IconButton aria-label="WhatsApp">
+        <WhatsAppIcon sx={{ fontSize: 24 }} />
+      </IconButton>
+    </Link>
+  </Box>
+</Box>
               </Box>
             </Drawer>
           </Box>
