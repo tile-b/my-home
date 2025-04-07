@@ -15,7 +15,6 @@ import Popper from '@mui/material/Popper';
 import Paper from '@mui/material/Paper';
 import MenuList from '@mui/material/MenuList';
 import ClickAwayListener from '@mui/material/ClickAwayListener';
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
@@ -29,6 +28,15 @@ import Typography from '@mui/material/Typography';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import { Link } from '@mui/material';
+import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+import curtain from '../icons/curtains.png';
+import blinds from '../icons/blinds.png';
+import carpet from '../icons/carpet.png';
+import handrail from '../icons/handrail.png';
+import net from '../icons/net.png';
+import pvc from '../icons/pvc.png';
+import plus from '../icons/plus.png';
+
 
 const StyledMenuList = styled(MenuList)(({ theme }) => ({
   padding: '4px 0',
@@ -70,6 +78,13 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
     : alpha(theme.palette.background.default, 0.4),
   boxShadow: (theme.vars || theme).shadows[1],
   padding: '8px 12px',
+}));
+
+// Styled component for the nested submenu items
+const NestedMenuItem = styled(MenuItem)(({ theme }) => ({
+  paddingLeft: theme.spacing(4),
+  fontSize: '0.85rem',
+  minHeight: '32px',
 }));
 
 function AppAppBar() {
@@ -122,13 +137,22 @@ function AppAppBar() {
 
   const navItems = ['Početna', 'O Nama', 'Galerija', 'Kontakt'];
   
-  // Usluge submenu items
-  const uslugeItems = [
-    { text: 'Zavjese', icon: <MoreHorizIcon /> },
-    { text: 'PVC Stolarija', icon: <MoreHorizIcon /> },
-    { text: 'Tepisi', icon: <MoreHorizIcon /> },
-    { text: 'Zaluzine', icon: <MoreHorizIcon /> },
-    { text: 'Ograde', icon: <MoreHorizIcon /> }
+  // Zavjese submenu items
+  const zavjeseItems = [
+    'Zebra zavjese',
+    'Trakaste zavjese',
+    'Panel zavjese',
+    'Paravan-Zavjese'
+  ];
+  
+  // Usluge submenu items (other than Zavjese)
+  const otherUslugeItems = [
+    { text: 'PVC Stolarija', icon:  <img src={pvc} alt="Z" width="20" height="20" style={{paddingRight: '10px'}}/> },
+    { text: 'Tepisi', icon: <img src={carpet} alt="Z" width="20" height="20" style={{paddingRight: '10px'}}/>  },
+    { text: 'Zaluzine', icon: <img src={blinds} alt="Z" width="20" height="20" style={{paddingRight: '10px'}}/>  },
+    { text: 'Ograde', icon: <img src={handrail} alt="Z" width="20" height="20" style={{paddingRight: '10px'}}/>  },
+    { text: 'Komarnici', icon: <img src={net} alt="Z" width="20" height="20" style={{paddingRight: '10px'}}/>  },
+    { text: 'Ostalo', icon: <img src={plus} alt="Z" width="20" height="20" style={{paddingRight: '10px'}}/>  }
   ];
 
   return (
@@ -253,26 +277,30 @@ function AppAppBar() {
                     >
                       <ClickAwayListener onClickAway={handleClose}>
                         <StyledMenuList autoFocusItem={false}>
+                          {/* Zavjese category header */}
                           <MenuItem onClick={handleClose} disableRipple>
-                            <MoreHorizIcon />
-                            Zavjese
-                          </MenuItem>
-                          <MenuItem onClick={handleClose} disableRipple>
-                            <MoreHorizIcon />
-                            PVC Stolarija
-                          </MenuItem>
-                          <MenuItem onClick={handleClose} disableRipple>
-                            <MoreHorizIcon />
-                            Tepisi
-                          </MenuItem>
-                          <MenuItem onClick={handleClose} disableRipple>
-                            <MoreHorizIcon />
-                            Zaluzine
-                          </MenuItem>
-                          <MenuItem onClick={handleClose} disableRipple>
-                            <MoreHorizIcon />
-                            Ograde
-                          </MenuItem>
+                          <img src={curtain} alt="Z" width="20" height="20" style={{paddingRight: '10px'}}/> 
+  Zavjese
+</MenuItem>
+                          
+                          {/* Zavjese submenu items - always visible */}
+                          {zavjeseItems.map((subItem, idx) => (
+                            <NestedMenuItem key={idx} onClick={handleClose} disableRipple>
+                              <ArrowRightIcon sx={{ fontSize: 14 }} />
+                              {subItem}
+                            </NestedMenuItem>
+                          ))}
+                          
+                          {/* Divider between Zavjese and other items */}
+                          <Divider sx={{ my: 1 }} />
+                          
+                          {/* Other items without submenu */}
+                          {otherUslugeItems.map((item, idx) => (
+                            <MenuItem key={idx} onClick={handleClose} disableRipple>
+                              {item.icon}
+                              {item.text}
+                            </MenuItem>
+                          ))}
                         </StyledMenuList>
                       </ClickAwayListener>
                     </StyledPaper>
@@ -306,11 +334,10 @@ function AppAppBar() {
 
                 {/* Navigation items */}
                 {navItems.map((item) => (
-  <MenuItem key={item} sx={{ fontWeight: 'bold' }}>
-    {item}
-  </MenuItem>
-))}
-
+                  <MenuItem key={item} sx={{ fontWeight: 'bold' }}>
+                    {item}
+                  </MenuItem>
+                ))}      
                 
                 {/* Usluge with submenu */}
                 <MenuItem 
@@ -328,7 +355,44 @@ function AppAppBar() {
                 {/* Collapsible submenu for Usluge */}
                 <Collapse in={mobileUslugeOpen} timeout="auto" unmountOnExit>
                   <List component="div" disablePadding>
-                    {uslugeItems.map((item, index) => (
+                    {/* Zavjese heading */}
+                    <MenuItem 
+                      sx={{ 
+                        pl: 4,
+                        fontWeight: 'bold',
+                        backgroundColor: 'rgba(0, 0, 0, 0.04)'
+                      }}
+                    >
+                      <ListItemIcon sx={{ minWidth: '36px' }}>
+                      <img src={curtain} alt="Z" width="20" height="20" /> 
+                      </ListItemIcon>
+                      <ListItemText primary="Zavjese" />
+                    </MenuItem>
+                    
+                    {/* Zavjese submenu items - always visible */}
+                    {zavjeseItems.map((subItem, idx) => (
+                      <MenuItem 
+                        key={idx}
+                        sx={{ 
+                          pl: 6,
+                          fontSize: '0.85rem',
+                          minHeight: '32px'
+                        }}
+                      >
+                        <ListItemIcon sx={{ minWidth: '36px' }}>
+                          <ArrowRightIcon sx={{ fontSize: 14 }} />
+                        </ListItemIcon>
+                        <ListItemText 
+                          primary={subItem} 
+                          primaryTypographyProps={{ 
+                            fontSize: '0.85rem' 
+                          }} 
+                        />
+                      </MenuItem>
+                    ))}
+                    
+                    {/* Other Usluge items */}
+                    {otherUslugeItems.map((item, index) => (
                       <MenuItem 
                         key={index}
                         sx={{ 
@@ -346,31 +410,30 @@ function AppAppBar() {
 
                 <Divider sx={{ my: 2 }} />
 
-{/* Social links and icons in same row */}
-
-<Box sx={{ 
-  mt: 1, 
-  px: 2, 
-  display: 'flex', 
-  justifyContent: 'space-between',
-  alignItems: 'center'
-}}>
-  <Typography variant="subtitle2" sx={{ color: 'text.secondary' }}>
-    Pronađite nas
-  </Typography>
-  <Box>
-    <Link href="https://www.instagram.com/myhome_samac/" target="_blank" rel="noopener noreferrer">
-      <IconButton aria-label="Instagram" sx={{ mr: 1 }}>
-        <InstagramIcon sx={{ fontSize: 24 }} />
-      </IconButton>
-    </Link>
-    <Link href="tel:+38763020909" target="_blank" rel="noopener noreferrer">
-      <IconButton aria-label="WhatsApp">
-        <WhatsAppIcon sx={{ fontSize: 24 }} />
-      </IconButton>
-    </Link>
-  </Box>
-</Box>
+                {/* Social links and icons in same row */}
+                <Box sx={{ 
+                  mt: 1, 
+                  px: 2, 
+                  display: 'flex', 
+                  justifyContent: 'space-between',
+                  alignItems: 'center'
+                }}>
+                  <Typography variant="subtitle2" sx={{ color: 'text.secondary' }}>
+                    Pronađite nas
+                  </Typography>
+                  <Box>
+                    <Link href="https://www.instagram.com/myhome_samac/" target="_blank" rel="noopener noreferrer">
+                      <IconButton aria-label="Instagram" sx={{ mr: 1 }}>
+                        <InstagramIcon sx={{ fontSize: 24 }} />
+                      </IconButton>
+                    </Link>
+                    <Link href="tel:+38763020909" target="_blank" rel="noopener noreferrer">
+                      <IconButton aria-label="WhatsApp">
+                        <WhatsAppIcon sx={{ fontSize: 24 }} />
+                      </IconButton>
+                    </Link>
+                  </Box>
+                </Box>
               </Box>
             </Drawer>
           </Box>

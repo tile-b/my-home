@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import AppAppBar from './components/AppBar/AppAppBar';
 import Home from './components/Home';
-
+import { motion } from 'framer-motion';
 
 function App() {
   return (
@@ -40,7 +40,11 @@ function App() {
 </div>
 </div>
 <div style={{ position: 'fixed', bottom: 0, width: '100%', zIndex: 1300 }}>
-  <div
+<motion.div
+        initial={{ opacity: 1, y: 0 }}       // start hidden and below
+        animate={{ opacity: 0, y: 0 }}        // animate to visible and original position
+        transition={{ duration: 10, ease: 'easeOut' }}>
+<div
     style={{
       height: '10vw',
       display: 'flex',
@@ -52,7 +56,9 @@ function App() {
     }}
   >
     Napomena: Sajt je trenutno u izradi i sve prikazano je podložno promjenama!!
-  </div>
+    </div>
+  </motion.div>
+
 </div>
 
 </>
