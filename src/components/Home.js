@@ -2,7 +2,7 @@ import React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { motion } from 'framer-motion';
-import imageSrc from '../images/mhs1.webp';
+import imageSrc from '../images/mhs.webp';
 import { Button } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 

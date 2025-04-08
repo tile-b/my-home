@@ -39,12 +39,18 @@ import plus from '../icons/plus.png';
 
 
 const StyledMenuList = styled(MenuList)(({ theme }) => ({
-  padding: '4px 0',
+  padding: '8px 0', // Increased padding
   '& .MuiMenuItem-root': {
+    fontWeight: 'bold',
+    fontSize: '1.3rem', // Larger font size
+    padding: '15px 16px', // More padding for each item
     '& .MuiSvgIcon-root': {
       fontSize: 18,
       color: theme.palette.text.secondary,
       marginRight: theme.spacing(1.5),
+    },
+    '&:hover': {
+      backgroundColor: '#c4c4c4', // White background on hover for desktop
     },
     '&:active': {
       backgroundColor: alpha(
@@ -58,7 +64,7 @@ const StyledMenuList = styled(MenuList)(({ theme }) => ({
 const StyledPaper = styled(Paper)(({ theme }) => ({
   borderRadius: 6,
   marginTop: theme.spacing(1),
-  minWidth: 180,
+  minWidth: 240, // Increased from 180 to make dropdown wider
   color: 'rgb(55, 65, 81)',
   boxShadow:
     'rgb(255, 255, 255) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px',
@@ -83,8 +89,12 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
 // Styled component for the nested submenu items
 const NestedMenuItem = styled(MenuItem)(({ theme }) => ({
   paddingLeft: theme.spacing(4),
-  fontSize: '0.85rem',
-  minHeight: '32px',
+  '&&': {  // Double ampersand increases specificity
+    fontSize: '0.95rem',
+  },
+  minHeight: '52px', // Increased from 32px
+  maxHeight: '40px',
+  color:'#6c6c78'
 }));
 
 function AppAppBar() {
@@ -106,7 +116,7 @@ function AppAppBar() {
     setHoverTimer(
       setTimeout(() => {
         setOpenPopper(false);
-      }, 300) // 300ms delay before closing
+      }, 233300) // 300ms delay before closing
     );
   };
   
@@ -147,12 +157,12 @@ function AppAppBar() {
   
   // Usluge submenu items (other than Zavjese)
   const otherUslugeItems = [
-    { text: 'PVC Stolarija', icon:  <img src={pvc} alt="Z" width="20" height="20" style={{paddingRight: '10px'}}/> },
-    { text: 'Tepisi', icon: <img src={carpet} alt="Z" width="20" height="20" style={{paddingRight: '10px'}}/>  },
-    { text: 'Zaluzine', icon: <img src={blinds} alt="Z" width="20" height="20" style={{paddingRight: '10px'}}/>  },
-    { text: 'Ograde', icon: <img src={handrail} alt="Z" width="20" height="20" style={{paddingRight: '10px'}}/>  },
-    { text: 'Komarnici', icon: <img src={net} alt="Z" width="20" height="20" style={{paddingRight: '10px'}}/>  },
-    { text: 'Ostalo', icon: <img src={plus} alt="Z" width="20" height="20" style={{paddingRight: '10px'}}/>  }
+    { text: 'PVC Stolarija', icon:  <img src={pvc} alt="Z" width="38" height="38" style={{paddingRight: '10px'}}/> },
+    { text: 'Tepisi', icon: <img src={carpet} alt="Z" width="38" height="38" style={{paddingRight: '10px'}}/>  },
+    { text: 'Zaluzine', icon: <img src={blinds} alt="Z" width="38" height="38" style={{paddingRight: '10px'}}/>  },
+    { text: 'Ograde', icon: <img src={handrail} alt="Z" width="38" height="38" style={{paddingRight: '10px'}}/>  },
+    { text: 'Komarnici', icon: <img src={net} alt="Z" width="38" height="38" style={{paddingRight: '10px'}}/>  },
+    { text: 'Ostalo', icon: <img src={plus} alt="Z" width="38" height="38" style={{paddingRight: '10px'}}/>  }
   ];
 
   return (
@@ -214,7 +224,7 @@ function AppAppBar() {
                 variant="text"
                 size="medium"
                 sx={{ 
-                  color: '#5a5a61', 
+                  color: '#3f4046', 
                   textTransform: 'none',
                   '&:hover': {
                     color: 'white',backgroundColor: 'transparent'
@@ -238,7 +248,7 @@ function AppAppBar() {
                 onMouseLeave={handleMouseLeave}
                 endIcon={<KeyboardArrowDownIcon />}
                 sx={{ 
-                  color: '#5a5a61', 
+                  color: '#3f4046', 
                   textTransform: 'none',
                   '&:hover': {
                     backgroundColor: 'transparent', color: 'white',
@@ -279,7 +289,7 @@ function AppAppBar() {
                         <StyledMenuList autoFocusItem={false}>
                           {/* Zavjese category header */}
                           <MenuItem onClick={handleClose} disableRipple>
-                          <img src={curtain} alt="Z" width="20" height="20" style={{paddingRight: '10px'}}/> 
+                          <img src={curtain} alt="Z" width="40" height="40" style={{paddingRight: '10px'}}/> 
   Zavjese
 </MenuItem>
                           
@@ -364,7 +374,7 @@ function AppAppBar() {
                       }}
                     >
                       <ListItemIcon sx={{ minWidth: '36px' }}>
-                      <img src={curtain} alt="Z" width="20" height="20" /> 
+                      <img src={curtain} alt="Z" width="38" height="38" style={{paddingRight: '10px'}} /> 
                       </ListItemIcon>
                       <ListItemText primary="Zavjese" />
                     </MenuItem>
@@ -424,12 +434,12 @@ function AppAppBar() {
                   <Box>
                     <Link href="https://www.instagram.com/myhome_samac/" target="_blank" rel="noopener noreferrer">
                       <IconButton aria-label="Instagram" sx={{ mr: 1 }}>
-                        <InstagramIcon sx={{ fontSize: 24 }} />
+                        <InstagramIcon sx={{ fontSize: 30 }} />
                       </IconButton>
                     </Link>
                     <Link href="tel:+38763020909" target="_blank" rel="noopener noreferrer">
                       <IconButton aria-label="WhatsApp">
-                        <WhatsAppIcon sx={{ fontSize: 24 }} />
+                        <WhatsAppIcon sx={{ fontSize: 30 }} />
                       </IconButton>
                     </Link>
                   </Box>

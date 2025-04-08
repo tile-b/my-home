@@ -46,7 +46,7 @@ function App() {
         transition={{ duration: 10, ease: 'easeOut' }}>
 <div
     style={{
-      height: '10vw',
+      height: '3rem',
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
