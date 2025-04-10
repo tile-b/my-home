@@ -42,7 +42,7 @@ const StyledMenuList = styled(MenuList)(({ theme }) => ({
   padding: '8px 0', // Increased padding
   '& .MuiMenuItem-root': {
     fontWeight: 'bold',
-    fontSize: '1.3rem', // Larger font size
+    fontSize: '1.2rem', // Larger font size
     padding: '15px 16px', // More padding for each item
     '& .MuiSvgIcon-root': {
       fontSize: 18,
@@ -50,7 +50,7 @@ const StyledMenuList = styled(MenuList)(({ theme }) => ({
       marginRight: theme.spacing(1.5),
     },
     '&:hover': {
-      backgroundColor: '#c4c4c4', // White background on hover for desktop
+      backgroundColor: '#c4c4c4', // rgb(145 142 138)
     },
     '&:active': {
       backgroundColor: alpha(
@@ -116,7 +116,7 @@ function AppAppBar() {
     setHoverTimer(
       setTimeout(() => {
         setOpenPopper(false);
-      }, 233300) // 300ms delay before closing
+      }, 300) // 300ms delay before closing
     );
   };
   
@@ -200,7 +200,7 @@ function AppAppBar() {
                 src={logo}
                 alt="Logo"
                 style={{
-                  height: 55,
+                  height: 60,
                   objectFit: 'contain',
                   cursor: 'pointer',
                 }}
@@ -224,10 +224,11 @@ function AppAppBar() {
                 variant="text"
                 size="medium"
                 sx={{ 
+                  fontSize: '1rem',
                   color: '#3f4046', 
                   textTransform: 'none',
                   '&:hover': {
-                    color: 'white',backgroundColor: 'transparent'
+                    color: 'white',backgroundColor: 'rgb(145 142 138)'
                   }, 
                   fontWeight: 'bold',
                 }}
@@ -248,10 +249,11 @@ function AppAppBar() {
                 onMouseLeave={handleMouseLeave}
                 endIcon={<KeyboardArrowDownIcon />}
                 sx={{ 
+                  fontSize: '1rem',
                   color: '#3f4046', 
                   textTransform: 'none',
                   '&:hover': {
-                    backgroundColor: 'transparent', color: 'white',
+                    backgroundColor: 'rgb(145 142 138)', color: 'white',
                   },
                   fontWeight: 'bold', 
                 }}

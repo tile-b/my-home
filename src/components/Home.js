@@ -5,9 +5,12 @@ import { motion } from 'framer-motion';
 import imageSrc from '../images/mhs.webp';
 import { Button } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
+import Gal from './Gal';
+import GalMob from './GalMob'
 
-function Home() {
+function Home({isMobile}) {
   return (
+    <>
     <Box
       sx={{
         width: '100%',
@@ -93,7 +96,7 @@ function Home() {
             variant="contained"
             endIcon={<SendIcon />}
             sx={{
-              borderRadius: '50px',
+              borderRadius: '5px',
               background: '#74653f',
               opacity: '90%',
               fontSize: { xs: '0.875rem', sm: '1rem', md: '1.2rem' }, // Increase size on larger screens
@@ -106,6 +109,14 @@ function Home() {
         </div>
       </motion.div>
     </Box>
+{!isMobile ? (
+    <Gal />
+) : (
+  <div>
+<GalMob />
+    </div>
+)}
+ </>
   );
 }
 
