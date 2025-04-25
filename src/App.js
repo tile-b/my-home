@@ -1,8 +1,6 @@
-import logo from './logo.svg';
 import './App.css';
 import AppAppBar from './components/AppBar/AppAppBar';
 import Home from './components/Home';
-import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import Proizvodi from './components/Proizvodi';
 

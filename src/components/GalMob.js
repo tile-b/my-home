@@ -1,7 +1,6 @@
 import React from "react";
 import './css/galmob.css'
-import m3 from '../images/mh3.jpg';
-import { Box, Button } from '@mui/material';
+import { Button } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 import ProductFeatures from "./ProductFeatures";
 import ImageSlider from "./ImageSlider";
