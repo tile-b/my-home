@@ -43,7 +43,8 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {
-    "tailwindcss": "^3.4.17"
-  }
+"devDependencies": {
+  "tailwindcss": "^3.4.17",
+  "@babel/plugin-proposal-private-methods": "^7.16.7"
 }
+
