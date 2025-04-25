@@ -5,6 +5,7 @@ import SendIcon from '@mui/icons-material/Send';
 import m1 from '../images/mh1.jpg';
 import m2 from '../images/mh2.jpg';
 import m3 from '../images/mh3.jpg';
+import ProductFeaturesD from "./ProductFeaturesD";
 
 export default function Gal() {
   return (
@@ -22,10 +23,7 @@ export default function Gal() {
       </div>
       <div className="text-section">
         <h1 style={{fontSize :'3rem'}}>Čime se bavimo</h1>
-        <p>Vršimo usluge izrade, ugradnje i montaže svih vrsta zaštita objekata od svjetlosti.</p>
-        <p>Veliki izbor boja, dezena, veličina, sve po vašoj mjeri.</p>
-        <p>U ponudi imamo Zavjese, Tepihe, Staze, Tende, Zaluzine i jos mnogo toga.</p>
-        <p>Sve vrste usluga vezanih za PVC stolariju. </p>
+<ProductFeaturesD />
         <Button
             variant="contained"
             endIcon={<SendIcon />}
@@ -33,9 +31,14 @@ export default function Gal() {
               borderRadius: '5px',
               background: '#74653f',
               opacity: '90%',
+              marginLeft:'20px',
               fontSize: { xs: '0.875rem', sm: '1rem', md: '1.2rem' }, // Increase size on larger screens
               padding: { xs: '6px 16px', sm: '8px 20px', md: '10px 24px' }, // Adjust padding for larger screens
-              marginTop: {xs: '0', sm: '0', md: '3rem'}
+              marginTop: {xs: '0', sm: '0', md: '3rem'},
+              transition: 'background-color 0.6s ease',
+              '&:hover': {
+                backgroundColor: '#0f0c06',
+              }
             }}
           >
             Galerija

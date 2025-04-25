@@ -33,13 +33,13 @@ const FeatureCard = ({ icon, title, description }) => {
             mr: 1.5 // Add margin to the right of the icon
           }} 
         />
-        <Typography variant="h6" fontWeight="bold" color='rgb(140, 106, 3)' sx={{fontSize: '1.5rem'}}>
+        <Typography variant="h6" fontWeight="bold" color='rgb(108 94 55)' sx={{fontSize: '1.5rem'}}>
           {title}
         </Typography>
       </Box>
       <Typography 
         variant="body2" 
-        color="rgba(85, 56, 0, 0.6)"
+        color="#5f5f5f"
         sx={{ textAlign: 'left', width: '100%',fontSize: '1rem' }} // Ensure text is left-aligned
       >
         {description}

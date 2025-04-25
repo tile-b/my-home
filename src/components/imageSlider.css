@@ -1,0 +1,14 @@
+/* Custom styling for Swiper pagination */
+.custom-pagination-swiper .swiper-pagination-bullet-active {
+    background-color: #6f613e !important;
+  }
+  
+  /* For smoother transitions */
+  .swiper-slide-shadow-left,
+  .swiper-slide-shadow-right {
+    transition: opacity 0.8s ease;
+  }
+  
+  .swiper {
+    transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+  }

@@ -4,9 +4,10 @@ import Typography from '@mui/material/Typography';
 import { motion } from 'framer-motion';
 import imageSrc from '../images/mhs.webp';
 import { Button } from '@mui/material';
-import SendIcon from '@mui/icons-material/Send';
+import NearMe from '@mui/icons-material/ArrowOutward';
 import Gal from './Gal';
 import GalMob from './GalMob'
+import Find from './Find';
 
 function Home({isMobile}) {
   return (
@@ -94,14 +95,19 @@ function Home({isMobile}) {
         <div style={{ display: 'flex', paddingTop: '10px' }}>
           <Button
             variant="contained"
-            endIcon={<SendIcon />}
+            endIcon={<NearMe />}
             sx={{
               borderRadius: '5px',
               background: '#74653f',
+              fontWeight:'bold',
               opacity: '90%',
               fontSize: { xs: '0.875rem', sm: '1rem', md: '1.2rem' }, // Increase size on larger screens
               padding: { xs: '6px 16px', sm: '8px 20px', md: '10px 24px' }, // Adjust padding for larger screens
-              marginTop: {xs: '0', sm: '0', md: '3rem'}
+              marginTop: {xs: '0', sm: '0', md: '3rem'},
+              transition: 'background-color 0.6s ease',
+              '&:hover': {
+                backgroundColor: '#0f0c06',
+              }
             }}
           >
             Kontakt
@@ -110,7 +116,10 @@ function Home({isMobile}) {
       </motion.div>
     </Box>
 {!isMobile ? (
+  <>
     <Gal />
+    <Find />
+</>
 ) : (
   <div>
 <GalMob />
