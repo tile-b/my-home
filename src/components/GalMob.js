@@ -27,7 +27,8 @@ export default function Gal() {
               fontSize: { xs: '0.875rem', sm: '1rem', md: '1.2rem' }, // Increase size on larger screens
               padding: { xs: '6px 16px', sm: '8px 20px', md: '10px 24px' }, // Adjust padding for larger screens
               marginTop: {xs: '0', sm: '0', md: '3rem'},
-              marginBottom: '5vw'
+              marginBottom: '5vw',
+              '&:hover': {background: '#0f0c06'}
             }}
           >
   Pogledajte Galeriju

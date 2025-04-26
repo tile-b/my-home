@@ -7,7 +7,7 @@ import { Button } from '@mui/material';
 import NearMe from '@mui/icons-material/ArrowOutward';
 import Gal from './Gal';
 import GalMob from './GalMob'
-import Find from './Find';
+
 
 function Home({isMobile}) {
   return (
@@ -118,7 +118,6 @@ function Home({isMobile}) {
 {!isMobile ? (
   <>
     <Gal />
-    <Find />
 </>
 ) : (
   <div>

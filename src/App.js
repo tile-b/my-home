@@ -2,7 +2,9 @@ import './App.css';
 import AppAppBar from './components/AppBar/AppAppBar';
 import Home from './components/Home';
 import { useState, useEffect } from 'react';
+import Kontakt from './components/Kontakt';
 import Proizvodi from './components/Proizvodi';
+import Find from './components/Find'
 
 function App() {
 
@@ -27,6 +29,8 @@ useEffect(() => {
     <Home isMobile={isMobile} />
     <AppAppBar />
     <Proizvodi />
+    {!isMobile ? (<Find />): (<></>)}
+    <Kontakt />
 
 <div style={{paddingTop:'1000px'}}></div>
 </div>
