@@ -1,5 +1,11 @@
 import React from 'react';
 import { Box, Typography, Paper, Button, Container } from '@mui/material';
+import z1 from './icons/curtain1.png'
+import z2 from './icons/blinds1.png'
+import z3 from './icons/fence1.png'
+import z4 from './icons/pvc1.png'
+import z5 from './icons/carpet.png'
+import z6 from './icons/net1.png'
 
 // Product data
 const products = [
@@ -7,31 +13,17 @@ const products = [
     id: 1,
     name: "Zavjese",
     icon: (
-      <svg viewBox="0 0 100 100" width="60" height="60" fill="none" stroke="currentColor" strokeWidth="2">
-        <path d="M20,70 L20,40 L80,40 L80,70" />
-        <path d="M15,40 L85,40" />
-        <path d="M20,40 L30,25 L70,25 L80,40" />
-        <path d="M30,70 L30,60 L45,60 L45,70" />
-        <path d="M55,70 L55,60 L70,60 L70,70" />
-      </svg>
+      <img src={z1} alt='Z' width="100" height="100">
+      </img>
     ),
     action: "Pogledaj"
   },
   {
     id: 2,
-    name: "PVC Stolarija",
+    name: "PVC",
     icon: (
-      <svg viewBox="0 0 100 100" width="60" height="60" fill="none" stroke="currentColor" strokeWidth="2">
-        <rect x="25" y="25" width="50" height="10" />
-        <path d="M25,35 L25,70 L75,70 L75,35" />
-        <path d="M20,25 L20,70" />
-        <path d="M80,25 L80,70" />
-        <path d="M25,45 L75,45" />
-        <path d="M35,45 L35,70" />
-        <path d="M45,45 L45,70" />
-        <path d="M55,45 L55,70" />
-        <path d="M65,45 L65,70" />
-      </svg>
+      <img src={z4} alt='Z' width="100" height="100">
+      </img>
     ),
     action: "Pogledaj"
   },
@@ -39,10 +31,8 @@ const products = [
     id: 3,
     name: "Komarnici",
     icon: (
-      <svg viewBox="0 0 100 100" width="60" height="60" fill="none" stroke="currentColor" strokeWidth="2">
-        <path d="M50,20 L50,70" />
-        <path d="M30,40 C30,30 40,25 50,25 C60,25 70,30 70,40 C70,50 60,55 50,55 C40,55 30,50 30,40 Z" />
-      </svg>
+      <img src={z6} alt='Z' width="100" height="100">
+      </img>
     ),
     action: "Pogledaj"
   },
@@ -50,15 +40,8 @@ const products = [
     id: 4,
     name: "Zaluzine",
     icon: (
-      <svg viewBox="0 0 100 100" width="60" height="60" fill="none" stroke="currentColor" strokeWidth="2">
-        <rect x="25" y="25" width="50" height="50" />
-        <rect x="32" y="32" width="16" height="16" />
-        <rect x="52" y="32" width="16" height="16" />
-        <path d="M25,60 L75,60" />
-        <path d="M25,50 L75,50" />
-        <path d="M25,40 L75,40" />
-        <path d="M25,70 L75,70" />
-      </svg>
+      <img src={z2} alt='Z' width="100" height="100">
+      </img>
     ),
     action: "Pogledaj"
   },
@@ -66,12 +49,8 @@ const products = [
     id: 5,
     name: "Tepisi",
     icon: (
-      <svg viewBox="0 0 100 100" width="60" height="60" fill="none" stroke="currentColor" strokeWidth="2">
-        <path d="M30,50 C30,40 40,35 50,35 C60,35 70,40 70,50" />
-        <path d="M25,50 L75,50 L75,65 L25,65 Z" />
-        <path d="M30,65 L30,75 L35,75" />
-        <path d="M70,65 L70,75 L65,75" />
-      </svg>
+      <img src={z5} alt='Z' width="100" height="100">
+      </img>
     ),
     action: "Pogledaj"
   },
@@ -79,12 +58,8 @@ const products = [
   id: 6,
   name: "Ograde",
   icon: (
-    <svg viewBox="0 0 100 100" width="60" height="60" fill="none" stroke="currentColor" strokeWidth="2">
-      <path d="M30,50 C30,40 40,35 50,35 C60,35 70,40 70,50" />
-      <path d="M25,50 L75,50 L75,65 L25,65 Z" />
-      <path d="M30,65 L30,75 L35,75" />
-      <path d="M70,65 L70,75 L65,75" />
-    </svg>
+    <img src={z3} alt='Z' width="100" height="100">
+      </img>
   ),
   action: "Pogledaj"
 }
@@ -99,7 +74,7 @@ function ProductShowcase() {
       </Typography>
       
       <Typography variant="h7" align="center" sx={{ mb: 6, color: 'text.secondary', paddingBottom: '10px' }}>
-        Idealno rešenje za zaštitu od svih vremenskih uslova.
+        Idealno rješenje za zaštitu od svih vremenskih uslova.
       </Typography>
       
       <Box sx={{ 
@@ -130,7 +105,7 @@ function ProductShowcase() {
                 transition: 'transform 0.2s, box-shadow 0.2s',
                 '&:hover': {
                   transform: 'translateY(-5px)',
-                  boxShadow: 3
+                  boxShadow: 3,
                 }
               }}
             >

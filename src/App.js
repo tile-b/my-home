@@ -5,6 +5,9 @@ import { useState, useEffect } from 'react';
 import Kontakt from './components/Kontakt';
 import Proizvodi from './components/Proizvodi';
 import Find from './components/Find'
+import Footer from './components/Footer';
+import FooterTile from './components/FooterTile';
+
 
 function App() {
 
@@ -29,10 +32,11 @@ useEffect(() => {
     <Home isMobile={isMobile} />
     <AppAppBar />
     <Proizvodi />
-    {!isMobile ? (<Find />): (<></>)}
     <Kontakt />
+    {!isMobile ? (<Find />): (<></>)}
+    <Footer />
+    <FooterTile />
 
-<div style={{paddingTop:'1000px'}}></div>
 </div>
 
 </>

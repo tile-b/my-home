@@ -86,7 +86,7 @@ const Kontakt = () => {
   ];
 
   return (
-    <Box sx={{ py: 4, background:'#7c6e4c2b', padding: '0 5vw 0 5vw', marginTop:'7vw' }}>
+    <Box sx={{ py: 4, background:'#cbcbcb', padding: '0 5vw 0 5vw', marginTop:'7vw' }}>
       <Grid container spacing={2}>
         {features.map((feature, index) => (
           <Grid item xs={12} sm={4} key={index}>
@@ -111,7 +111,7 @@ const Kontakt = () => {
               marginTop: {xs: '2rem', sm: '2rem', md: '3rem'},
               transition: 'background-color 0.6s ease',
               '&:hover': {
-                backgroundColor: '#746f61',
+                backgroundColor: '#7c6e4c',
               }
             }}
           >
