@@ -1,11 +1,11 @@
 import React from 'react';
-import { Box, Typography, Paper, Button, Container } from '@mui/material';
-import z1 from './icons/curtain1.png'
-import z2 from './icons/blinds1.png'
-import z3 from './icons/fence1.png'
-import z4 from './icons/pvc1.png'
-import z5 from './icons/carpet.png'
-import z6 from './icons/net1.png'
+import { Box, Typography, Paper, Container } from '@mui/material';
+import z1 from '../images/zavjesa.png'
+import z2 from '../images/prozor.png'
+import z3 from '../images/komarnik.png'
+import z4 from '../images/zaluzine.png'
+import z5 from '../images/tepih.png'
+import z6 from '../images/ograda.png'
 
 // Product data
 const products = [
@@ -13,7 +13,7 @@ const products = [
     id: 1,
     name: "Zavjese",
     icon: (
-      <img src={z1} alt='Z' width="100" height="100">
+      <img src={z1} alt='Z' width="150" height="150">
       </img>
     ),
     action: "Pogledaj"
@@ -22,7 +22,7 @@ const products = [
     id: 2,
     name: "PVC",
     icon: (
-      <img src={z4} alt='Z' width="100" height="100">
+      <img src={z2} alt='Z' width="150" height="150">
       </img>
     ),
     action: "Pogledaj"
@@ -31,7 +31,7 @@ const products = [
     id: 3,
     name: "Komarnici",
     icon: (
-      <img src={z6} alt='Z' width="100" height="100">
+      <img src={z3} alt='Z' width="150" height="150">
       </img>
     ),
     action: "Pogledaj"
@@ -40,7 +40,7 @@ const products = [
     id: 4,
     name: "Zaluzine",
     icon: (
-      <img src={z2} alt='Z' width="100" height="100">
+      <img src={z4} alt='Z' width="150" height="150">
       </img>
     ),
     action: "Pogledaj"
@@ -49,7 +49,7 @@ const products = [
     id: 5,
     name: "Tepisi",
     icon: (
-      <img src={z5} alt='Z' width="100" height="100">
+      <img src={z5} alt='Z' width="150" height="150">
       </img>
     ),
     action: "Pogledaj"
@@ -58,7 +58,7 @@ const products = [
   id: 6,
   name: "Ograde",
   icon: (
-    <img src={z3} alt='Z' width="100" height="100">
+    <img src={z6} alt='Z' width="150" height="150">
       </img>
   ),
   action: "Pogledaj"
@@ -88,27 +88,31 @@ function ProductShowcase() {
           <Box 
             key={product.id} 
             sx={{ 
-              width: 150, // Fixed width for all screen sizes
+              width: 160, // Fixed width for all screen sizes
               mb: 3
             }}
           >
-            <Paper 
-              elevation={1} 
-              sx={{ 
-                background:'#d0d0d0',
-                height: '12rem', 
-                display: 'flex', 
-                flexDirection: 'column', 
-                alignItems: 'center', 
-                p: 4, 
-                borderRadius: 2,
-                transition: 'transform 0.2s, box-shadow 0.2s',
-                '&:hover': {
-                  transform: 'translateY(-5px)',
-                  boxShadow: 3,
-                }
-              }}
-            >
+<Paper 
+  elevation={1} 
+  sx={{ 
+    backgroundColor: '#a4a4a4',
+    color:'black',
+    height: '12rem', 
+    display: 'flex', 
+    flexDirection: 'column', 
+    alignItems: 'center', 
+    p: 4, 
+    borderRadius: 2,
+    transition: 'transform 0.2s, box-shadow 0.2s, background-color 0.7s ease-in-out', // background-color transition added
+    '&:hover': {
+      transform: 'translateY(-5px)',
+      boxShadow: 3,
+      backgroundColor: 'rgb(153 130 76)', 
+      cursor: 'pointer',
+      color: 'white'
+    }
+  }}
+>
               <Box sx={{ mb: 2, color: 'text.primary' }}>
                 {product.icon}
               </Box>
@@ -117,20 +121,6 @@ function ProductShowcase() {
                 {product.name}
               </Typography>
               
-              <Box sx={{ mt: 'auto' }}>
-                <Button 
-                  variant="contained" 
-                  color="primary" 
-                  sx={{ 
-                    bgcolor: '#201d17', 
-                    '&:hover': {
-                      bgcolor: '#7c6e4c'
-                    }
-                  }}
-                >
-                  {product.action}
-                </Button>
-              </Box>
             </Paper>
           </Box>
         ))}

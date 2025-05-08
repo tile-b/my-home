@@ -1,0 +1,116 @@
+/* KakoDoNas.css */
+.kdn-container {
+  background-color: #bebbb6; /* gray-50 */
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  max-width: 64rem; /* max-w-4xl */
+  margin: 0 auto;
+}
+.kdn-container p {
+  color: #4a4a4a
+}
+
+.kdn-title {
+  font-size: 1.875rem; /* text-3xl */
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #211e19; /* text-blue-800 */
+}
+
+.kdn-tabs {
+  display: flex;
+  margin-bottom: 1.5rem;
+}
+
+.kdn-tab {
+    cursor: pointer;
+  padding: 0.5rem 1rem;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  font-weight: 500;
+  background-color: #e5e7eb;
+  color: #211e19;
+  display: flex;
+  align-items: center;
+}
+.kdn-tab:hover{
+  color: #7c6e4c;
+}
+
+.kdn-tab.active {
+  background-color: rgb(33, 30, 25);
+  color: #ffffff;
+}
+
+.kdn-section {
+  margin-top: 1.5rem;
+}
+
+.kdn-section h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #211e19db;
+}
+
+.kdn-section h4 {
+  font-weight: 600;
+  color: #37352f;
+  margin-bottom: 0.5rem;
+}
+
+.kdn-ul {
+  list-style-type: disc;
+  padding-left: 1.25rem;
+}
+
+.kdn-li {
+  margin-bottom: 0.25rem;
+}
+
+.kdn-img {
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  height: auto;
+}
+
+.kdn-note {
+  margin-top: 1rem;
+  background-color: #1180083d;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  color: #325b38;
+  font-weight: 500;
+}
+
+.kdn-table td {
+  padding: 0.75rem 0;
+}
+
+.kdn-table .label {
+  font-weight: 500;
+}
+
+.kdn-warning {
+  background-color: #fef9c3;
+  color: #b45309;
+  padding: 1rem;
+  margin-top: 1.5rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+}
+.kk{
+  display: flex;
+  justify-content: space-between;
+  text-align: left; 
+}
+@media (max-width: 1000px) {
+  .kk {
+text-align: center;
+display: block;
+  }
+}
