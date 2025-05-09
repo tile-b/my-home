@@ -33,7 +33,7 @@ useEffect(() => {
     <AppAppBar />
     <Proizvodi />
     <Kontakt />
-  <Find />
+    <Find />
     <Footer />
     <FooterTile />
 

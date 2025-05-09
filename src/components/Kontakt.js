@@ -11,6 +11,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import DraftsIcon from '@mui/icons-material/Drafts';
 import Call from '@mui/icons-material/Call';
+import { motion } from 'framer-motion';
 
 const FeatureCard = ({ icon, title, description }) => {
   return (
@@ -86,6 +87,12 @@ const Kontakt = () => {
   ];
 
   return (
+          <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: false, amount: 0.2 }}
+      transition={{ delay: 0.3,duration: 0.6, ease: 'easeOut' }}
+    >
     <Box sx={{ py: 4, background:'#cbcbcb', padding: '0 5vw 0 5vw', marginTop:'7vw' }}>
       <Grid container spacing={2}>
         {features.map((feature, index) => (
@@ -139,6 +146,7 @@ const Kontakt = () => {
 
 <div style={{borderBottom: '2px solid #685e5e', width: '100%'}}></div>
     </Box>
+    </motion.div>
   );
 };
 
