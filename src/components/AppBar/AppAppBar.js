@@ -36,7 +36,11 @@ import handrail from '../icons/handrail.png';
 import net from '../icons/net.png';
 import pvc from '../icons/pvc.png';
 import plus from '../icons/plus.png';
-
+import { motion } from 'framer-motion';
+// Import React Router if using it
+// import { useLocation, useNavigate } from 'react-router-dom';
+// Import Link if using React Router
+// import { Link as RouterLink } from 'react-router-dom';
 
 const StyledMenuList = styled(MenuList)(({ theme }) => ({
   padding: '8px 0', // Increased padding
@@ -98,6 +102,18 @@ const NestedMenuItem = styled(MenuItem)(({ theme }) => ({
 }));
 
 function AppAppBar() {
+  // If using React Router
+  // const location = useLocation();
+  // const navigate = useNavigate();
+  
+  // When using with React context for refs
+  // const { homeRef, aboutRef, contactRef } = React.useContext(NavigationContext);
+  
+  // Or create refs directly if not using context
+  const homeRef = React.useRef(null);
+  const aboutRef = React.useRef(null);
+  const contactRef = React.useRef(null);
+  
   const [open, setOpen] = React.useState(false);
   const [openPopper, setOpenPopper] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -145,24 +161,100 @@ function AppAppBar() {
     setMobileUslugeOpen(!mobileUslugeOpen);
   };
 
-  const navItems = ['Početna', 'O Nama', 'Galerija', 'Kontakt'];
-  
-  // Zavjese submenu items
-  const zavjeseItems = [
-    'Zebra zavjese',
-    'Trakaste zavjese',
-    'Panel zavjese',
-    'Paravan-Zavjese'
+  // Navigation items with their corresponding routes/refs and navigation behavior
+  const navItems = [
+    { 
+      text: 'Početna', 
+      path: '/', 
+      ref: homeRef,
+      action: () => {
+        // Check if we're already on the home page
+        if (window.location.pathname === '/' || window.location.pathname === '') {
+          // Already on home page, just scroll to top
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+          // On a different page, navigate to home
+          window.location.href = '/';
+        }
+      }
+    },
+    { 
+      text: 'O Nama', 
+      path: '/', 
+      ref: aboutRef,
+      action: () => {
+        // If on home page, scroll to section
+        if (window.location.pathname === '/' || window.location.pathname === '') {
+          if (aboutRef?.current) {
+            aboutRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        } else {
+          // Navigate to home and add hash for the section
+          window.location.href = '/#about';
+        }
+      }
+    },
+    { 
+      text: 'Galerija', 
+      path: '/galerija', 
+      ref: null,
+      action: () => {
+        // Always navigate to gallery page
+        window.location.href = '/galerija';
+      }
+    },
+    { 
+      text: 'Kontakt', 
+      path: '/', 
+      ref: contactRef,
+      action: () => {
+        // If on home page, scroll to section
+        if (window.location.pathname === '/' || window.location.pathname === '') {
+          if (contactRef?.current) {
+            contactRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        } else {
+          // Navigate to home and add hash for the section
+          window.location.href = '/#contact';
+        }
+      }
+    }
   ];
   
-  // Usluge submenu items (other than Zavjese)
+  // Handle navigation for nav items
+  const handleNavigation = (item) => {
+    if (item && item.action) {
+      item.action();
+      // Close mobile menu if open
+      if (open) toggleDrawer(false)();
+    }
+  };
+  
+  // Navigate to route function (for multi-page items like product pages)
+  const navigateToRoute = (path) => {
+    // For simple HTML navigation:
+    window.location.href = path;
+    
+    // Close mobile menu if open
+    if (open) toggleDrawer(false)();
+  };
+  
+  // Zavjese submenu items with their routes
+  const zavjeseItems = [
+    { text: 'Zebra zavjese', path: '/products/zebra-zavjese' },
+    { text: 'Trakaste zavjese', path: '/products/trakaste-zavjese' },
+    { text: 'Panel zavjese', path: '/products/panel-zavjese' },
+    { text: 'Paravan-Zavjese', path: '/products/paravan-zavjese' }
+  ];
+  
+  // Usluge submenu items (other than Zavjese) with their routes
   const otherUslugeItems = [
-    { text: 'PVC Stolarija', icon:  <img src={pvc} alt="Z" width="38" height="38" style={{paddingRight: '10px'}}/> },
-    { text: 'Tepisi', icon: <img src={carpet} alt="Z" width="38" height="38" style={{paddingRight: '10px'}}/>  },
-    { text: 'Zaluzine', icon: <img src={blinds} alt="Z" width="38" height="38" style={{paddingRight: '10px'}}/>  },
-    { text: 'Ograde', icon: <img src={handrail} alt="Z" width="38" height="38" style={{paddingRight: '10px'}}/>  },
-    { text: 'Komarnici', icon: <img src={net} alt="Z" width="38" height="38" style={{paddingRight: '10px'}}/>  },
-    { text: 'Ostalo', icon: <img src={plus} alt="Z" width="38" height="38" style={{paddingRight: '10px'}}/>  }
+    { text: 'PVC Stolarija', path: '/products/pvc-stolarija', icon: <img src={pvc} alt="Z" width="38" height="38" style={{paddingRight: '10px'}}/> },
+    { text: 'Tepisi', path: '/products/tepisi', icon: <img src={carpet} alt="Z" width="38" height="38" style={{paddingRight: '10px'}}/> },
+    { text: 'Zaluzine', path: '/products/zaluzine', icon: <img src={blinds} alt="Z" width="38" height="38" style={{paddingRight: '10px'}}/> },
+    { text: 'Ograde', path: '/products/ograde', icon: <img src={handrail} alt="Z" width="38" height="38" style={{paddingRight: '10px'}}/> },
+    { text: 'Komarnici', path: '/products/komarnici', icon: <img src={net} alt="Z" width="38" height="38" style={{paddingRight: '10px'}}/> },
+    { text: 'Ostalo', path: '/products/ostalo', icon: <img src={plus} alt="Z" width="38" height="38" style={{paddingRight: '10px'}}/> }
   ];
 
   return (
@@ -195,16 +287,25 @@ function AppAppBar() {
                   backgroundColor: 'rgba(255,255,255,0.3)', // white-ish ripple
                 },
               }}
-            >
-              <img
-                src={logo}
-                alt="Logo"
-                style={{
-                  height: 60,
-                  objectFit: 'contain',
-                  cursor: 'pointer',
+            >        
+              <motion.div
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{
+                    duration: 0.4,
+                    scale: { type: "spring", visualDuration: 0.4, bounce: 0.5 },
                 }}
-              />
+              >
+                <img
+                  src={logo}
+                  alt="Logo"
+                  style={{
+                    height: 60,
+                    objectFit: 'contain',
+                    cursor: 'pointer',
+                  }}
+                />
+              </motion.div>
             </Button>
           </Box>
 
@@ -214,15 +315,15 @@ function AppAppBar() {
               display: { xs: 'none', md: 'flex' },
               gap: 2,
               alignItems: 'center',
-              
             }}
           >
             {/* Regular nav items */}
-            {navItems.map((item, index) => (
+            {navItems.map((item) => (
               <Button
-                key={item}
+                key={item.text}
                 variant="text"
                 size="medium"
+                onClick={() => handleNavigation(item)}
                 sx={{ 
                   fontSize: '1rem',
                   color: '#3f4046', 
@@ -233,7 +334,7 @@ function AppAppBar() {
                   fontWeight: 'bold',
                 }}
               >
-                {item}
+                {item.text}
               </Button>
             ))}
 
@@ -258,7 +359,7 @@ function AppAppBar() {
                   fontWeight: 'bold', 
                 }}
               >
-                Usluge
+                Proizvodi
               </Button>
               
               <Popper
@@ -291,15 +392,22 @@ function AppAppBar() {
                         <StyledMenuList autoFocusItem={false}>
                           {/* Zavjese category header */}
                           <MenuItem onClick={handleClose} disableRipple>
-                          <img src={curtain} alt="Z" width="40" height="40" style={{paddingRight: '10px'}}/> 
-  Zavjese
-</MenuItem>
+                            <img src={curtain} alt="Z" width="40" height="40" style={{paddingRight: '10px'}}/> 
+                            Zavjese
+                          </MenuItem>
                           
                           {/* Zavjese submenu items - always visible */}
                           {zavjeseItems.map((subItem, idx) => (
-                            <NestedMenuItem key={idx} onClick={handleClose} disableRipple>
+                            <NestedMenuItem 
+                              key={idx} 
+                              onClick={() => {
+                                handleClose();
+                                navigateToRoute(subItem.path);
+                              }} 
+                              disableRipple
+                            >
                               <ArrowRightIcon sx={{ fontSize: 14 }} />
-                              {subItem}
+                              {subItem.text}
                             </NestedMenuItem>
                           ))}
                           
@@ -308,7 +416,14 @@ function AppAppBar() {
                           
                           {/* Other items without submenu */}
                           {otherUslugeItems.map((item, idx) => (
-                            <MenuItem key={idx} onClick={handleClose} disableRipple>
+                            <MenuItem 
+                              key={idx} 
+                              onClick={() => {
+                                handleClose();
+                                navigateToRoute(item.path);
+                              }} 
+                              disableRipple
+                            >
                               {item.icon}
                               {item.text}
                             </MenuItem>
@@ -346,8 +461,12 @@ function AppAppBar() {
 
                 {/* Navigation items */}
                 {navItems.map((item) => (
-                  <MenuItem key={item} sx={{ fontWeight: 'bold' }}>
-                    {item}
+                  <MenuItem 
+                    key={item.text} 
+                    sx={{ fontWeight: 'bold' }}
+                    onClick={() => handleNavigation(item)}
+                  >
+                    {item.text}
                   </MenuItem>
                 ))}      
                 
@@ -360,7 +479,7 @@ function AppAppBar() {
                     backgroundColor: mobileUslugeOpen ? 'rgba(0, 0, 0, 0.04)' : 'transparent'
                   }}
                 >
-                  <Box sx={{fontWeight: 'bold', color: '#545559'}}>Usluge</Box>
+                  <Box sx={{fontWeight: 'bold', color: '#545559'}}>Proizvodi</Box>
                   {mobileUslugeOpen ? <ExpandLessIcon /> : <ExpandMoreIcon />}
                 </MenuItem>
                 
@@ -376,7 +495,7 @@ function AppAppBar() {
                       }}
                     >
                       <ListItemIcon sx={{ minWidth: '36px' }}>
-                      <img src={curtain} alt="Z" width="38" height="38" style={{paddingRight: '10px'}} /> 
+                        <img src={curtain} alt="Z" width="38" height="38" style={{paddingRight: '10px'}} /> 
                       </ListItemIcon>
                       <ListItemText primary="Zavjese" />
                     </MenuItem>
@@ -390,12 +509,16 @@ function AppAppBar() {
                           fontSize: '0.85rem',
                           minHeight: '32px'
                         }}
+                        onClick={() => {
+                          toggleDrawer(false)();
+                          navigateToRoute(subItem.path);
+                        }}
                       >
                         <ListItemIcon sx={{ minWidth: '36px' }}>
                           <ArrowRightIcon sx={{ fontSize: 14 }} />
                         </ListItemIcon>
                         <ListItemText 
-                          primary={subItem} 
+                          primary={subItem.text} 
                           primaryTypographyProps={{ 
                             fontSize: '0.85rem' 
                           }} 
@@ -409,6 +532,10 @@ function AppAppBar() {
                         key={index}
                         sx={{ 
                           pl: 4,
+                        }}
+                        onClick={() => {
+                          toggleDrawer(false)();
+                          navigateToRoute(item.path);
                         }}
                       >
                         <ListItemIcon sx={{ minWidth: '36px' }}>

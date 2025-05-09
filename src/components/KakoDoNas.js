@@ -40,9 +40,9 @@ export default function KakoDoNas() {
         {/* Smooth Transition Section */}
         <motion.div
           key={aktivnaKartica}
-          initial={{ opacity: 0, x: 50 }}
+          initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -50 }}
+          exit={{ opacity: 0, x: 50 }}
           transition={{ duration: 0.5, ease: 'easeInOut' }}
         >
           {aktivnaKartica === 'lokacija' && (
@@ -74,9 +74,16 @@ export default function KakoDoNas() {
                 </div>
               </div>
               <div className="kdn-half">
+              <motion.div
+          key={aktivnaKartica}
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -30 }}
+          transition={{ delay: 0.5, duration: 0.8, ease: 'easeInOut' }}
+        >
                 <div className="kdn-note">
                   Besplatan parking je dostupan ispred tržnog centra za sve naše kupce!
-                </div>
+                </div></motion.div>
               </div>
             </div>
           )}
@@ -115,11 +122,17 @@ export default function KakoDoNas() {
                     </tbody>
                   </table>
                 </div>
-                <div className="kdn-half">
+                <div className="kdn-half">              <motion.div
+          key={aktivnaKartica}
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -30 }}
+          transition={{ delay: 0.5, duration: 0.8, ease: 'easeInOut' }}
+        >
                   <div className="kdn-warning">
                     <strong>Napomena:</strong> Tokom državnih praznika radno vreme može biti
                     izmenjeno. Pratite naše objave na društvenim mrežama za ažurirane informacije.
-                  </div>
+                  </div></motion.div>
                 </div>
               </div>
             </div>

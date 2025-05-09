@@ -77,7 +77,7 @@ function ProductShowcase() {
         <motion.ul
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.1 }}
           transition={{duration: 0.5 }}
           style={{
             display: 'flex',
@@ -94,8 +94,8 @@ function ProductShowcase() {
   key={product.id}
   initial={{ y: 20, opacity: 0 }}
   whileInView={{ y: 0, opacity: 1 }}
-  viewport={{ once: true, amount: 0.3 }}
-  transition={{ delay: index * 0.3, type: 'spring', stiffness: 100 }}
+  viewport={{ once: false, amount: 0.3 }}
+  transition={{ delay: index * 0.2, type: 'spring', stiffness: 100 }}
   style={{ listStyle: 'none' }}
 >
 

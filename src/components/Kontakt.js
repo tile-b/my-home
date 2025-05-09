@@ -105,6 +105,12 @@ const Kontakt = () => {
           </Grid>
         ))}
       </Grid>
+      <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: false, amount: 0.2 }}
+      transition={{ delay: 0.3,duration: 0.6, ease: 'easeOut' }}
+    >
       <Button
             variant="contained"
             endIcon={<SendIcon />}
@@ -123,7 +129,7 @@ const Kontakt = () => {
             }}
           >
             KONTAKTRIJATE NAS
-          </Button>
+          </Button></motion.div>
           <List
       sx={{ width: '100%',display: 'grid', justifyContent: 'center', paddingBottom: '3vw'
 
