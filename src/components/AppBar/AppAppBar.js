@@ -250,7 +250,7 @@ function AppAppBar() {
   // Usluge submenu items (other than Zavjese) with their routes
   const otherUslugeItems = [
     { text: 'PVC Stolarija', path: '/products/pvc-stolarija', icon: <img src={pvc} alt="Z" width="38" height="38" style={{paddingRight: '10px'}}/> },
-    { text: 'Tepisi', path: '/products/tepisi', icon: <img src={carpet} alt="Z" width="38" height="38" style={{paddingRight: '10px'}}/> },
+    { text: 'Tepisi', path: '/galerija', icon: <img src={carpet} alt="Z" width="38" height="38" style={{paddingRight: '10px'}}/> },
     { text: 'Zaluzine', path: '/products/zaluzine', icon: <img src={blinds} alt="Z" width="38" height="38" style={{paddingRight: '10px'}}/> },
     { text: 'Ograde', path: '/products/ograde', icon: <img src={handrail} alt="Z" width="38" height="38" style={{paddingRight: '10px'}}/> },
     { text: 'Komarnici', path: '/products/komarnici', icon: <img src={net} alt="Z" width="38" height="38" style={{paddingRight: '10px'}}/> },
