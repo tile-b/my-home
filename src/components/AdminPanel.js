@@ -14,6 +14,7 @@ function AdminPanel() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [newCategoryName, setNewCategoryName] = useState('');
+    const [rememberMe, setRememberMe] = useState(false);
 
     // Memoize the fetch functions using useCallback to prevent infinite loops
     const fetchCategories = useCallback(async () => {
@@ -191,12 +192,26 @@ function AdminPanel() {
             
             const accessToken = response.data.access_token;
             setToken(accessToken);
-            localStorage.setItem('token', accessToken);
+            
+            // Handle remember me logic
+            if (rememberMe) {
+                localStorage.setItem('token', accessToken);
+                localStorage.setItem('rememberMe', 'true');
+            } else {
+                // Store token for current session only, remove rememberMe flag
+                sessionStorage.setItem('token', accessToken);
+                localStorage.removeItem('rememberMe');
+                localStorage.removeItem('token');
+            }
             
             // Clear sensitive information
             setUsername('');
             setPassword('');
+            setRememberMe(false);
             setError('');
+            
+            // Hide login form after successful login
+            document.getElementById('login-section').style.display = 'none';
         } catch (error) {
             console.error('Login error:', error);
             setError(error.response?.data?.message || 'Login failed');
@@ -207,6 +222,8 @@ function AdminPanel() {
     const handleLogout = () => {
         setToken('');
         localStorage.removeItem('token');
+        sessionStorage.removeItem('token');
+        localStorage.removeItem('rememberMe');
     };
 
     // Get category name by id
@@ -322,6 +339,22 @@ function AdminPanel() {
                                 placeholder="******************"
                                 required
                             />
+                        </div>
+                        <div style={{ marginBottom: "16px" }}>
+                            <label style={{ 
+                                display: "flex", 
+                                alignItems: "center", 
+                                color: "#4b5563", 
+                                cursor: "pointer" 
+                            }}>
+                                <input
+                                    type="checkbox"
+                                    checked={rememberMe}
+                                    onChange={(e) => setRememberMe(e.target.checked)}
+                                    style={{ marginRight: "8px" }}
+                                />
+                                Remember me
+                            </label>
                         </div>
                         <div style={{ display: "flex", justifyContent: "space-between" }}>
                             <button type="button" 
