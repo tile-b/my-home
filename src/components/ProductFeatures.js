@@ -63,7 +63,7 @@ const ProductFeatures = () => {
     {
       icon: i3,
       title: "U Ponudi",
-      description: "PVC Stolarija, Zavjese, Tepisi, Staze, Tende, Zaluzine i jos mnogo toga."
+      description: "PVC Stolarija, Zavjese, Tepisi, Staze, Tende, Žaluzine i jos mnogo toga."
     }
   ];
 

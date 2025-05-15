@@ -30,7 +30,7 @@ const products = [
   },
   {
     id: 4,
-    name: "Zaluzine",
+    name: "Žaluzine",
     icon: <img src={z4} alt='Z' width="150" height="150" />,
     action: "Pogledaj"
   },

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
+import '../components/css/zoom.css'
 
 const API_BASE_URL = "http://localhost:5000";
 
@@ -573,18 +574,19 @@ function AdminPanel() {
                             <img 
                                 src={`${API_BASE_URL}/static/uploads/${image.filename}`} 
                                 alt={image.filename}
-                                style={{ width: "100%", height: "200px", objectFit: "cover" }}
+                                className="zoom-image"
+                                style={{ width: "100%", height: "200px", objectFit: "cover"}}
                             />
                             <div style={{ padding: "16px" }}>
                                 <p style={{ fontSize: "14px", color: "#4b5563", marginBottom: "8px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
-                                    {image.filename}
+                                    {/* {image.filename} */}
                                 </p>
                                 <p style={{ 
                                     fontSize: "14px", 
                                     color: "#ffffff", 
                                     marginBottom: "12px", 
-                                    backgroundColor: "#3b82f6",
-                                    borderRadius: "20px",
+                                    background: 'linear-gradient(0deg, hsla(43, 42%, 42%, 1) 0%, hsla(43, 49%, 44%, 1) 100%)',
+                                    borderRadius: "5px",
                                     padding: "4px 12px",
                                     display: "inline-block"
                                 }}>

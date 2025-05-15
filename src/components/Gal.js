@@ -6,6 +6,7 @@ import m1 from '../images/mh1.jpg';
 import m2 from '../images/mh2.jpg';
 import m3 from '../images/mh3.jpg';
 import ProductFeaturesD from "./ProductFeaturesD";
+import { Link } from 'react-router-dom';
 
 // Import framer-motion and react-intersection-observer
 import { motion } from "framer-motion";
@@ -106,6 +107,8 @@ export default function Gal() {
         {/* Button wrapped in its own motion.div */}
         <motion.div variants={textItemVariants} className="text-item">
           <Button
+            component={Link}
+             to="/galerija"
             variant="contained"
             endIcon={<SendIcon />}
             sx={{

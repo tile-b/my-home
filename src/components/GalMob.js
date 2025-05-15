@@ -4,6 +4,7 @@ import { Button } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 import ProductFeatures from "./ProductFeatures";
 import ImageSlider from "./ImageSlider";
+import { Link } from 'react-router-dom';
 
 
 
@@ -18,6 +19,8 @@ export default function Gal() {
 
 <ProductFeatures />
 <Button
+            component={Link}
+             to="/galerija"
             variant="contained"
             endIcon={<SendIcon />}
             sx={{

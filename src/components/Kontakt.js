@@ -12,6 +12,12 @@ import ListItemText from '@mui/material/ListItemText';
 import DraftsIcon from '@mui/icons-material/Drafts';
 import Call from '@mui/icons-material/Call';
 import { motion } from 'framer-motion';
+import Modal from '@mui/material/Modal';
+import PhoneIcon from '@mui/icons-material/Phone';
+import MailIcon from '@mui/icons-material/Mail';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import { Link } from '@mui/material';
 
 const FeatureCard = ({ icon, title, description }) => {
   return (
@@ -86,6 +92,25 @@ const Kontakt = () => {
     }
   ];
 
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+      const style = {
+    color: 'white',
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 'fit-content',
+  bgcolor: 'background.paper',
+  p: 4,
+  borderRadius: '7px',
+  background: 'rgba(201, 201, 201, 0.2)', 
+  backdropFilter: 'blur(10px)', 
+  border: '1px solid rgba(255, 255, 255, 0.3)', 
+  boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)' 
+};
+
   return (
           <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -111,7 +136,7 @@ const Kontakt = () => {
       viewport={{ once: false, amount: 0.2 }}
       transition={{ delay: 0.3,duration: 0.6, ease: 'easeOut' }}
     >
-      <Button
+      <Button onClick={handleOpen}
             variant="contained"
             endIcon={<SendIcon />}
             sx={{
@@ -129,7 +154,72 @@ const Kontakt = () => {
             }}
           >
             KONTAKTRIJATE NAS
-          </Button></motion.div>
+          </Button></motion.div>           <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+                  <motion.div
+            initial={{ y: 0, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.05, ease: 'easeOut' }}
+          >
+        <Box sx={{ ...style, width: { xs: "auto", md: "auto" } }}>
+                            <motion.div
+            initial={{ y: 30, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.2, duration: 0.5, ease: 'easeOut' }}
+          >
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            Kontaktirajte nas:
+          </Typography>
+<Box
+  component="a"
+  href="tel:0038163020909"
+  sx={{
+    mt: 3,
+    display: 'flex',
+    alignItems: 'center',
+    gap: 1,
+    textDecoration: 'none',
+    color: 'white', // Inherit color from parent
+    '&:hover': {
+      textDecoration: 'none',
+    },
+  }}
+>
+          <PhoneIcon style={{fontSize:30, cursor: 'pointer' }} />
+          <Typography>063/020-909</Typography>
+        </Box>
+<Box
+  component="a"
+  href="mailto:example@example.com"
+  sx={{
+    mt: 3,
+    display: 'flex',
+    alignItems: 'center',
+    gap: 1,
+    textDecoration: 'none',
+    color: 'white', // Inherit color from parent
+    '&:hover': {
+      textDecoration: 'none',
+    },
+  }}
+>
+          <MailIcon style={{fontSize:30, cursor: 'pointer' }} />
+          <Typography>samac.myhome@gmail.com</Typography>
+        </Box>
+
+        <Box sx={{ mt: 5, display: 'flex',alignItems:'center', gap: 2, justifyContent: 'flex-end',borderTop:'1px solid',pt: 2 }}>
+          <div style={{fontSize:'15px'}}>Društvene mreže:</div>
+          <Link href="https://www.instagram.com/myhome_samac/" target="_blank" rel="noopener noreferrer" sx={{color: 'white'}}>
+          <InstagramIcon style={{fontSize:40, cursor: 'pointer' }} /></Link>
+           <Link href="https://www.facebook.com/MyHome.Samac" target="_blank" rel="noopener noreferrer" sx={{color: 'white'}}>
+          <FacebookIcon style={{fontSize:40, cursor: 'pointer' }} /></Link>
+        </Box></motion.div>
+        </Box></motion.div>
+      </Modal>
           <List
       sx={{ width: '100%',display: 'grid', justifyContent: 'center', paddingBottom: '3vw'
 
