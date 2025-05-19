@@ -29,9 +29,10 @@ const Gallery = () => {
   };
 
   return (
-    <Box sx={{ p: 4, mt: '100px' }}>
+    <div style={{backgroundColor: '#cbcbcb'}}>
+    <Box sx={{ p: 4, pt: '200px' }}>
       <Typography variant="h4" sx={{ mb: 3, textAlign: "center" }}>
-        Gallery
+        Galerija Uskoro
       </Typography>
       <Grid container spacing={2}>
         {images.map((image) => (
@@ -64,6 +65,7 @@ const Gallery = () => {
         ))}
       </Grid>
     </Box>
+    </div>
   );
 };
 

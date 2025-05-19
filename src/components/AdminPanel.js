@@ -237,7 +237,7 @@ function AdminPanel() {
     const isAdmin = !!token;
 
     return (
-        <div style={{ minHeight: "100vh", backgroundColor: "#f3f4f6", padding: "24px" }}>
+        <div style={{ minHeight: "100vh", backgroundColor: "#cbcbcb", padding: "24px" }}>
             <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
                 {/* Header section - changes based on login status */}
                 <div style={{ 

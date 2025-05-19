@@ -105,7 +105,7 @@ export default function Gal() {
         </motion.div>
 
         {/* Button wrapped in its own motion.div */}
-        <motion.div variants={textItemVariants} className="text-item">
+        <motion.div id="about" variants={textItemVariants} className="text-item">
           <Button
             component={Link}
              to="/galerija"

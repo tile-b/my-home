@@ -1,4 +1,3 @@
-import React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { motion } from 'framer-motion';
@@ -13,12 +12,14 @@ import MailIcon from '@mui/icons-material/Mail';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import { Link } from '@mui/material';
+import React from 'react';
 
-function Home({ isMobile }) {
+function Home({ isMobile, galRef }) {
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
 
   const style = {
     color: 'white',
@@ -169,13 +170,16 @@ function Home({ isMobile }) {
   href="tel:0038163020909"
   sx={{
     mt: 3,
+    p: 1,
     display: 'flex',
     alignItems: 'center',
     gap: 1,
     textDecoration: 'none',
     color: 'white', // Inherit color from parent
+    transition: 'background-color 0.4s ease-in-out',
     '&:hover': {
       textDecoration: 'none',
+      backgroundColor: '#515151'
     },
   }}
 >
@@ -187,20 +191,22 @@ function Home({ isMobile }) {
   href="mailto:example@example.com"
   sx={{
     mt: 3,
+    p: 1,
     display: 'flex',
     alignItems: 'center',
     gap: 1,
     textDecoration: 'none',
     color: 'white', // Inherit color from parent
+    transition: 'background-color 0.4s ease-in-out',
     '&:hover': {
       textDecoration: 'none',
+      backgroundColor: '#515151'
     },
   }}
 >
           <MailIcon style={{fontSize:30, cursor: 'pointer' }} />
           <Typography>samac.myhome@gmail.com</Typography>
         </Box>
-
         <Box sx={{ mt: 5, display: 'flex',alignItems:'center', gap: 2, justifyContent: 'flex-end',borderTop:'1px solid',pt: 2 }}>
           <div style={{fontSize:'15px'}}>Društvene mreže:</div>
           <Link href="https://www.instagram.com/myhome_samac/" target="_blank" rel="noopener noreferrer" sx={{color: 'white'}}>
@@ -215,7 +221,9 @@ function Home({ isMobile }) {
       </Box>
 
       {/* Gallery */}
+      <div ref={galRef}>
       {!isMobile ? <Gal /> : <GalMob />}
+      </div>
     </>
   );
 }

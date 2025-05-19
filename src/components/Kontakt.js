@@ -73,7 +73,7 @@ const FeatureCard = ({ icon, title, description }) => {
   );
 };
 
-const Kontakt = () => {
+const Kontakt = ({contRef}) => {
   const features = [
     {
       icon: i1,
@@ -112,7 +112,7 @@ const Kontakt = () => {
 };
 
   return (
-          <motion.div
+          <motion.div ref={contRef}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: false, amount: 0.2 }}
@@ -179,13 +179,16 @@ const Kontakt = () => {
   href="tel:0038163020909"
   sx={{
     mt: 3,
+    p: 1,
     display: 'flex',
     alignItems: 'center',
     gap: 1,
     textDecoration: 'none',
     color: 'white', // Inherit color from parent
+        transition: 'background-color 0.4s ease-in-out',
     '&:hover': {
       textDecoration: 'none',
+       backgroundColor: '#515151'
     },
   }}
 >
@@ -197,13 +200,16 @@ const Kontakt = () => {
   href="mailto:example@example.com"
   sx={{
     mt: 3,
+    p: 1,
     display: 'flex',
     alignItems: 'center',
     gap: 1,
     textDecoration: 'none',
     color: 'white', // Inherit color from parent
+    transition: 'background-color 0.4s ease-in-out',
     '&:hover': {
       textDecoration: 'none',
+      backgroundColor: '#515151'
     },
   }}
 >
@@ -230,7 +236,9 @@ const Kontakt = () => {
         <ListItemIcon>
           <Call />
         </ListItemIcon>
-        <ListItemText primary="00387 63 020 909" />
+        <ListItemText 
+        
+        primary="00387 63 020 909" />
       </ListItemButton>
       <ListItemButton sx={{ '&:hover': {borderRight: '2px solid black', borderLeft: '2px solid black'}}}>
         <ListItemIcon>

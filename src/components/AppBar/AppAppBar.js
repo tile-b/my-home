@@ -37,8 +37,9 @@ import net from '../icons/net.png';
 import pvc from '../icons/pvc.png';
 import plus from '../icons/plus.png';
 import { motion } from 'framer-motion';
+// import Gal from '../Gal'
 // Import React Router if using it
-// import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 // Import Link if using React Router
 // import { Link as RouterLink } from 'react-router-dom';
 
@@ -101,19 +102,14 @@ const NestedMenuItem = styled(MenuItem)(({ theme }) => ({
   color:'#6c6c78'
 }));
 
-function AppAppBar() {
-  // If using React Router
-  // const location = useLocation();
-  // const navigate = useNavigate();
-  
+function AppAppBar({scrollToGal, scrollToContact}) {
+
   // When using with React context for refs
   // const { homeRef, aboutRef, contactRef } = React.useContext(NavigationContext);
   
   // Or create refs directly if not using context
   const homeRef = React.useRef(null);
-  const aboutRef = React.useRef(null);
-  const contactRef = React.useRef(null);
-  
+   
   const [open, setOpen] = React.useState(false);
   const [openPopper, setOpenPopper] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -178,19 +174,14 @@ function AppAppBar() {
         }
       }
     },
-    { 
-      text: 'O Nama', 
-      path: '/', 
-      ref: aboutRef,
+   {
+      text: 'O Nama',
+      path: '/',
       action: () => {
-        // If on home page, scroll to section
-        if (window.location.pathname === '/' || window.location.pathname === '') {
-          if (aboutRef?.current) {
-            aboutRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }
+        if (location.pathname === '/') {
+          scrollToGal();
         } else {
-          // Navigate to home and add hash for the section
-          window.location.href = '/#about';
+          navigate('/', { state: { scrollToGal: true } });
         }
       }
     },
@@ -203,22 +194,17 @@ function AppAppBar() {
         window.location.href = '/galerija';
       }
     },
-    { 
-      text: 'Kontakt', 
-      path: '/', 
-      ref: contactRef,
+   {
+      text: 'Kontakt',
+      path: '/',
       action: () => {
-        // If on home page, scroll to section
-        if (window.location.pathname === '/' || window.location.pathname === '') {
-          if (contactRef?.current) {
-            contactRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }
+        if (location.pathname === '/') {
+          scrollToContact();
         } else {
-          // Navigate to home and add hash for the section
-          window.location.href = '/#contact';
+          navigate('/', { state: { scrollToContact: true } });
         }
       }
-    }
+    },
   ];
   
   // Handle navigation for nav items
@@ -257,6 +243,17 @@ function AppAppBar() {
     { text: 'Ostalo', path: '/products/ostalo', icon: <img src={plus} alt="Z" width="38" height="38" style={{paddingRight: '10px'}}/> }
   ];
 
+    const location = useLocation();
+  const navigate = useNavigate();
+
+    const logoPath = () => {
+    if (location.pathname === "/galerija") {
+      navigate("/");
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
   return (
     <AppBar
       position="fixed"
@@ -273,7 +270,7 @@ function AppAppBar() {
           {/* Left: Logo */}
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
             <Button
-              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              onClick={logoPath}
               disableRipple={false}
               color="inherit"
               sx={{
