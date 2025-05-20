@@ -29,12 +29,12 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import { Link } from '@mui/material';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
-import curtain from '../icons/curtains.png';
-import blinds from '../icons/blinds.png';
-import carpet from '../icons/carpet.png';
-import handrail from '../icons/handrail.png';
-import net from '../icons/net.png';
-import pvc from '../icons/pvc.png';
+import curtain from '../icons/curtainA.png';
+import blinds from '../icons/blindsA.png';
+import carpet from '../icons/carpetA.png';
+import handrail from '../icons/handrailA.png';
+import net from '../icons/netA.png';
+import pvc from '../icons/pvcA.png';
 import plus from '../icons/plus.png';
 import { motion } from 'framer-motion';
 // import Gal from '../Gal'
@@ -55,7 +55,8 @@ const StyledMenuList = styled(MenuList)(({ theme }) => ({
       marginRight: theme.spacing(1.5),
     },
     '&:hover': {
-      backgroundColor: '#c4c4c4', // rgb(145 142 138)
+      backgroundColor: '#e7e7e7', // rgb(145 142 138)
+      borderRight:'5px solid black',
     },
     '&:active': {
       backgroundColor: alpha(
@@ -103,9 +104,6 @@ const NestedMenuItem = styled(MenuItem)(({ theme }) => ({
 }));
 
 function AppAppBar({scrollToGal, scrollToContact}) {
-
-  // When using with React context for refs
-  // const { homeRef, aboutRef, contactRef } = React.useContext(NavigationContext);
   
   // Or create refs directly if not using context
   const homeRef = React.useRef(null);
@@ -384,18 +382,46 @@ function AppAppBar({scrollToGal, scrollToContact}) {
                     <StyledPaper 
                       onMouseEnter={handleMenuMouseEnter}
                       onMouseLeave={handleMenuMouseLeave}
+                                    sx={{
+
+                background: '#c9c9c9'
+              }}
                     >
                       <ClickAwayListener onClickAway={handleClose}>
                         <StyledMenuList autoFocusItem={false}>
                           {/* Zavjese category header */}
-                          <MenuItem onClick={handleClose} disableRipple>
-                            <img src={curtain} alt="Z" width="40" height="40" style={{paddingRight: '10px'}}/> 
-                            Zavjese
-                          </MenuItem>
+<MenuItem
+  onClick={handleClose}
+  disableRipple
+  sx={{
+    display: 'flex',
+    alignItems: 'center',
+    '& img': {
+      filter: 'grayscale(100%)',
+      transition: 'filter 0.5s ease',
+    },
+    '&:hover img': {
+      filter: 'grayscale(0%)',
+      scale: 1.05
+    },
+    '&:hover': {
+      color: 'black'
+    }
+  }}
+>
+  <img src={curtain} alt="Z" width="40" height="40" style={{ paddingRight: '10px' }} />
+  Zavjese
+</MenuItem>
+
                           
                           {/* Zavjese submenu items - always visible */}
                           {zavjeseItems.map((subItem, idx) => (
                             <NestedMenuItem 
+                            sx={{
+                                  '&:hover': {
+      color: 'black'
+    }
+                            }}
                               key={idx} 
                               onClick={() => {
                                 handleClose();
@@ -414,6 +440,21 @@ function AppAppBar({scrollToGal, scrollToContact}) {
                           {/* Other items without submenu */}
                           {otherUslugeItems.map((item, idx) => (
                             <MenuItem 
+                              sx={{
+    display: 'flex',
+    alignItems: 'center',
+    '& img': {
+      filter: 'grayscale(100%)',
+      transition: 'filter 0.5s ease',
+    },
+    '&:hover img': {
+      filter: 'grayscale(0%)',
+      scale: 1.05
+    },
+    '&:hover': {
+      color: 'black'
+    }
+  }}
                               key={idx} 
                               onClick={() => {
                                 handleClose();
@@ -435,7 +476,7 @@ function AppAppBar({scrollToGal, scrollToContact}) {
           </Box>
 
           {/* Mobile: Menu */}
-          <Box sx={{ display: { xs: 'flex', md: 'none', } }}>
+          <Box sx={{ display: { xs: 'flex', md: 'none'} }}>
             <IconButton aria-label="Menu button" onClick={toggleDrawer(true)}>
               <MenuIcon sx={{ color: '#f0f0f0' }} />
             </IconButton>
@@ -446,6 +487,7 @@ function AppAppBar({scrollToGal, scrollToContact}) {
               PaperProps={{
                 sx: {
                   top: 'var(--template-frame-height, 0px)',
+                  filter: 'grayscale(50%)',
                 },
               }}
             >
@@ -473,10 +515,10 @@ function AppAppBar({scrollToGal, scrollToContact}) {
                   sx={{ 
                     display: 'flex', 
                     justifyContent: 'space-between',
-                    backgroundColor: mobileUslugeOpen ? 'rgba(0, 0, 0, 0.04)' : 'transparent'
+                    backgroundColor: mobileUslugeOpen ? 'rgba(0, 0, 0, 0.04)' : 'transparent',
                   }}
                 >
-                  <Box sx={{fontWeight: 'bold', color: '#545559'}}>Proizvodi</Box>
+                  <Box sx={{fontWeight: 'bold', color: '#545559', }}>Proizvodi</Box>
                   {mobileUslugeOpen ? <ExpandLessIcon /> : <ExpandMoreIcon />}
                 </MenuItem>
                 

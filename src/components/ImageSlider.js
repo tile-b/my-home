@@ -8,8 +8,10 @@ import { Pagination, EffectCoverflow, Autoplay } from 'swiper/modules';
 import m1 from '../images/mh1.jpg';
 import m2 from '../images/mh2.jpg';
 import m3 from '../images/mh3.jpg';
+import m4 from '../images/kom.jpeg'
+import m5 from '../images/ograda.jpg'
+import m6 from '../images/constO.jpeg'
 
-// Custom CSS for yellow pagination bullets
 import './imageSlider.css';  // You'll need to create this CSS file
 
 const styles = {
@@ -67,10 +69,13 @@ const ImageSlider = () => {
           <img src={m3} alt="Slide 3" style={styles.image} />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={m1} alt="Slide 4" style={styles.image} />
+          <img src={m4} alt="Slide 4" style={styles.image} />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={m2} alt="Slide 5" style={styles.image} />
+          <img src={m5} alt="Slide 5" style={styles.image} />
+        </SwiperSlide>
+                <SwiperSlide>
+          <img src={m6} alt="Slide 5" style={styles.image} />
         </SwiperSlide>
       </Swiper>
     </div>
