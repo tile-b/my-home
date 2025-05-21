@@ -11,6 +11,9 @@ import Footer from './components/Footer';
 import FooterTile from './components/FooterTile';
 import Galerija from './components/Galerija';
 import AdminPanel from './components/AdminPanel';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import { Button } from '@mui/material';
+import { Fade } from '@mui/material';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -26,7 +29,21 @@ function ScrollToTop() {
 function App() {
   const [isMobile, setIsMobile] = useState(false);
   const location  = useLocation();
- 
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  const handleScroll = () => {
+    setShowScrollTop(window.scrollY > 500); // adjust threshold if needed
+  };
+
+  const handleScrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 1000);
@@ -63,6 +80,31 @@ useEffect(() => {
 
   return (
     <div className="App">
+
+<Fade in={showScrollTop}>
+      <Button 
+      onClick={handleScrollToTop}
+      sx={{
+        position: 'fixed',
+        zIndex:'1000',
+        bottom: '3vw',
+        right: '3vw',
+        background:'none',
+        border: 'none',
+        cursor :'pointer',
+        color: 'gray',
+        transition: 'color 0.6s ease',
+        '&:hover':{
+          color: 'black'
+        },
+      }}><KeyboardArrowUpIcon sx={{
+            fontSize: {
+      xs: '3rem',  // applies to small and up
+      md: '5vw'    // applies to medium and up
+    }
+      }}/></Button>
+
+</Fade>
       <AppAppBar  scrollToGal={scrollToGal} scrollToContact={scrollToContact}/>
       <ScrollToTop /> {/* Add ScrollToTop here */}
 

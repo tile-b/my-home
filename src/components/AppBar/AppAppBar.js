@@ -29,12 +29,12 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import { Link } from '@mui/material';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
-import curtain from '../icons/curtainA.png';
-import blinds from '../icons/blindsA.png';
-import carpet from '../icons/carpetA.png';
-import handrail from '../icons/handrailA.png';
-import net from '../icons/netA.png';
-import pvc from '../icons/pvcA.png';
+import curtain from '../icons/curtains.png';
+import blinds from '../icons/blinds.png';
+import carpet from '../icons/carpet.png';
+import handrail from '../icons/handrail.png';
+import net from '../icons/net.png';
+import pvc from '../icons/pvc.png';
 import plus from '../icons/plus.png';
 import { motion } from 'framer-motion';
 // import Gal from '../Gal'
@@ -56,7 +56,7 @@ const StyledMenuList = styled(MenuList)(({ theme }) => ({
     },
     '&:hover': {
       backgroundColor: '#e7e7e7', // rgb(145 142 138)
-      borderRight:'5px solid black',
+      borderRight:'7px solid black',
     },
     '&:active': {
       backgroundColor: alpha(
@@ -397,12 +397,12 @@ function AppAppBar({scrollToGal, scrollToContact}) {
     display: 'flex',
     alignItems: 'center',
     '& img': {
-      filter: 'grayscale(100%)',
+      opacity: '60%',
       transition: 'filter 0.5s ease',
     },
     '&:hover img': {
-      filter: 'grayscale(0%)',
-      scale: 1.05
+      opacity: '100%',
+      scale: 1.1
     },
     '&:hover': {
       color: 'black'
@@ -444,12 +444,12 @@ function AppAppBar({scrollToGal, scrollToContact}) {
     display: 'flex',
     alignItems: 'center',
     '& img': {
-      filter: 'grayscale(100%)',
+      opacity: '60%',
       transition: 'filter 0.5s ease',
     },
     '&:hover img': {
-      filter: 'grayscale(0%)',
-      scale: 1.05
+      opacity: '100%',
+      scale: 1.1
     },
     '&:hover': {
       color: 'black'
