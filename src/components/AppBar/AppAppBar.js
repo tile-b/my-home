@@ -31,7 +31,7 @@ import { Link } from '@mui/material';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import curtain from '../icons/curtains.png';
 import blinds from '../icons/blinds.png';
-import carpet from '../icons/carpet.png';
+import stand from '../icons/stand.png';
 import handrail from '../icons/handrail.png';
 import net from '../icons/net.png';
 import pvc from '../icons/pvc.png';
@@ -234,7 +234,7 @@ function AppAppBar({scrollToGal, scrollToContact}) {
   // Usluge submenu items (other than Zavjese) with their routes
   const otherUslugeItems = [
     { text: 'PVC Stolarija', path: '/products/pvc-stolarija', icon: <img src={pvc} alt="Z" width="38" height="38" style={{paddingRight: '10px'}}/> },
-    { text: 'Tepisi', path: '/galerija', icon: <img src={carpet} alt="Z" width="38" height="38" style={{paddingRight: '10px'}}/> },
+    { text: 'Tende', path: '/galerija', icon: <img src={stand} alt="Z" width="38" height="38" style={{paddingRight: '10px'}}/> },
     { text: 'Žaluzine', path: '/products/zaluzine', icon: <img src={blinds} alt="Z" width="38" height="38" style={{paddingRight: '10px'}}/> },
     { text: 'Ograde', path: '/products/ograde', icon: <img src={handrail} alt="Z" width="38" height="38" style={{paddingRight: '10px'}}/> },
     { text: 'Komarnici', path: '/products/komarnici', icon: <img src={net} alt="Z" width="38" height="38" style={{paddingRight: '10px'}}/> },
