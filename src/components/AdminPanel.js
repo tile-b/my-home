@@ -2,6 +2,8 @@ import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import '../components/css/zoom.css'
 
+
+//OBRISI OVO
 const API_BASE_URL = "http://localhost:5000";
 
 function AdminPanel() {
@@ -14,7 +16,6 @@ function AdminPanel() {
     const [error, setError] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [newCategoryName, setNewCategoryName] = useState('');
     const [rememberMe, setRememberMe] = useState(false);
 
     // Memoize the fetch functions using useCallback to prevent infinite loops
@@ -112,52 +113,6 @@ function AdminPanel() {
         } catch (error) {
             console.error('Upload error:', error);
             setError(error.response?.data?.message || 'Failed to upload image');
-        }
-    };
-
-    // Add new category
-    const addCategory = async () => {
-        if (!newCategoryName.trim()) {
-            setError('Category name cannot be empty');
-            return;
-        }
-
-        try {
-            await axios.post(`${API_BASE_URL}/categories`, 
-                { name: newCategoryName },
-                { headers: { Authorization: `Bearer ${token}` } }
-            );
-            fetchCategories();
-            setNewCategoryName('');
-            setError('');
-        } catch (error) {
-            console.error('Error adding category:', error);
-            setError(error.response?.data?.message || 'Failed to add category');
-        }
-    };
-
-    // Delete category
-    const deleteCategory = async (id) => {
-        // Confirm before deleting
-        if (!window.confirm('Are you sure you want to delete this category? All associated images must be removed first.')) {
-            return;
-        }
-        
-        try {
-            await axios.delete(`${API_BASE_URL}/categories/${id}`, {
-                headers: { Authorization: `Bearer ${token}` }
-            });
-            fetchCategories();
-            
-            // Reset filter if the deleted category was being used as a filter
-            if (filterCategory === id.toString()) {
-                setFilterCategory('');
-            }
-            
-            setError('');
-        } catch (error) {
-            console.error('Error deleting category:', error);
-            setError(error.response?.data?.message || 'Failed to delete category');
         }
     };
 
@@ -385,77 +340,6 @@ function AdminPanel() {
                         </div>
                     </form>
                 </div>
-
-                {/* Category Management - Only visible when logged in as admin */}
-                {isAdmin && (
-                    <div style={{ 
-                        marginBottom: "24px",
-                        backgroundColor: "#ffffff",
-                        boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
-                        borderRadius: "8px",
-                        padding: "16px 24px"
-                    }}>
-                        <h3 style={{ fontSize: "18px", marginBottom: "16px" }}>Category Management</h3>
-                        <div style={{ display: "flex", alignItems: "center", gap: "16px", marginBottom: "16px" }}>
-                            <input 
-                                type="text" 
-                                value={newCategoryName}
-                                onChange={(e) => setNewCategoryName(e.target.value)}
-                                placeholder="New category name" 
-                                style={{
-                                    flex: "1",
-                                    padding: "8px 12px",
-                                    borderRadius: "4px",
-                                    border: "1px solid #d1d5db",
-                                    outline: "none",
-                                    fontSize: "16px"
-                                }}
-                            />
-                            <button 
-                                onClick={addCategory} 
-                                style={{
-                                    backgroundColor: "#10b981",
-                                    color: "#ffffff",
-                                    padding: "10px 20px",
-                                    border: "none",
-                                    borderRadius: "4px",
-                                    cursor: "pointer",
-                                    fontWeight: "bold"
-                                }}
-                            >
-                                Add Category
-                            </button>
-                        </div>
-                        <div style={{ display: "flex", flexWrap: "wrap", gap: "12px" }}>
-                            {categories.map(category => (
-                                <div key={category.id} style={{
-                                    display: "flex",
-                                    alignItems: "center",
-                                    backgroundColor: "#f3f4f6",
-                                    borderRadius: "20px",
-                                    padding: "8px 16px",
-                                    gap: "8px"
-                                }}>
-                                    <span style={{ fontSize: "14px" }}>{category.name}</span>
-                                    <button 
-                                        onClick={() => deleteCategory(category.id)}
-                                        style={{
-                                            backgroundColor: "transparent",
-                                            color: "#ef4444",
-                                            border: "none",
-                                            cursor: "pointer",
-                                            fontSize: "16px",
-                                            fontWeight: "bold",
-                                            padding: "0 4px"
-                                        }}
-                                    >
-                                        ×
-                                    </button>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                )}
 
                 {/* Admin Controls (Upload) - Only visible when logged in */}
                 {isAdmin && (

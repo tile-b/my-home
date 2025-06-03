@@ -10,7 +10,6 @@ import Find from './components/Find';
 import Footer from './components/Footer';
 import FooterTile from './components/FooterTile';
 import Galerija from './components/Galerija';
-import AdminPanel from './components/AdminPanel';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { Button } from '@mui/material';
 import { Fade } from '@mui/material';
@@ -120,7 +119,7 @@ useEffect(() => {
             </>
           } 
         />
-        <Route path="/galerija" element={<><Galerija /><AdminPanel /></>} />
+        <Route path="/galerija" element={<><Galerija /></>} />
         <Route path="*" element={<div>Page Not Found</div>} />
       </Routes>
 
